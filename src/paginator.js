@@ -23,29 +23,6 @@ class Paginator {
     }
   }
 
-  filter(filters) {
-    this._filters = Object.assign({}, filters)
-    return this
-  }
-
-  sort(field) {
-    if (field === this._sort) {
-      this._direction = this._direction === 'asc' ? 'desc' : 'asc'
-    } else {
-      this._sort = field;
-      this._direction = DEFAULT_DIRECTION
-      this._page = FIRST_PAGE
-    }
-
-    return this
-  }
-
-  setPage(page, limit) {
-    this._page = page
-    this._limit = limit
-    return this
-  }
-
   paginate() {
     let params = {
       filter: this._filter,
@@ -57,6 +34,31 @@ class Paginator {
     params.sort[this._sort] = this._direction
 
     return http.get(this._endpoint, params: params).then((res) => this._pagination = res.data.pagination)
+  }
+
+  filter(filters) {
+    this._filters = Object.assign({}, filters)
+
+    return this.paginate()
+  }
+
+  sort(field) {
+    if (field === this._sort) {
+      this._direction = this._direction === 'asc' ? 'desc' : 'asc'
+    } else {
+      this._sort = field;
+      this._direction = DEFAULT_DIRECTION
+      this._page = FIRST_PAGE
+    }
+
+    return this.paginate()
+  }
+
+  getPage(page, limit) {
+    this._page = page
+    this._limit = limit
+
+    return this.paginate()
   }
 
   getNext() {

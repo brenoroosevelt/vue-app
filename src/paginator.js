@@ -44,6 +44,20 @@ export default class Paginator {
       params.sort[this._sort] = this._direction
     }
 
+    /**
+     * Expected response (json):
+     * {
+     *   "data": [...],
+     *   "pagination" {
+     *     page: 1,
+     *     limit: 15,
+     *     total_pages: 0,
+     *     total_results: 0,
+     *     next_page: 0,
+     *     previous_page: 0,
+     *   }
+     * }
+     */
     return http.get(this._endpoint, { params: params })
       .then((res) => {
         this._pagination = res.data.pagination

@@ -5,14 +5,21 @@ const DEFAULT_LIMIT = 15
 const DEFAULT_DIRECTION = 'asc'
 
 class Paginator {
-  constructor(endpoint, sort = null, direction = DEFAULT_DIRECTION, page = FIRST_PAGE, limit = DEFAULT_LIMIT) {
+  constructor(
+    endpoint,
+    page = FIRST_PAGE,
+    limit = DEFAULT_LIMIT,
+    sort = null,
+    direction = DEFAULT_DIRECTION,
+    filter = {}
+  ) {
     this._endpoint = endpoint
-    this._filters = {}
-    this._sort = sort || {}
     this._page = page
     this._limit = limit
     this._defaultLimit = limit
+    this._sort = sort
     this._direction = direction
+    this._filters = filter
 
     this._pagination = {
       page: this._page,

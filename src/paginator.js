@@ -12,6 +12,15 @@ class Paginator {
     this._page = FIRST_PAGE
     this._limit = DEFAULT_LIMIT
     this._direction = DEFAULT_DIRECTION
+
+    this._pagination = {
+      page: this._page,
+      limit: this._limit,
+      total_pages: 0,
+      total_results: 0,
+      next_page: 0,
+      previous_page: 0,
+    }
   }
 
   filter(filters) {
@@ -47,6 +56,22 @@ class Paginator {
 
     params.sort[this._sort] = this._direction
 
-    return http.get(this._endpoint, params: params)
+    return http.get(this._endpoint, params: params).then((res) => this._pagination = res.data.pagination)
+  }
+
+  getNext() {
+    if (this._pagination.next_page) {
+      this._page = this._pagination.next_page
+    }
+
+    return this.paginate()
+  }
+
+  getPrev() {
+    if (this._pagination.previous_page) {
+      this._page = this._pagination.previous_page
+    }
+
+    return this.paginate()
   }
 }

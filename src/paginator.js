@@ -1,4 +1,4 @@
-import http from './http-common'
+import { http } from './http-common'
 
 const FIRST_PAGE = 1
 const DEFAULT_LIMIT = 15
@@ -44,16 +44,20 @@ export default class Paginator {
       params.sort[this._sort] = this._direction
     }
 
-    return http.get(this._endpoint, { params: params }).then((res) => this._pagination = res.data.pagination)
+    return http.get(this._endpoint, { params: params })
+      .then((res) => {
+        this._pagination = res.data.pagination
+        return res.data.data
+      })
   }
 
-  filter(filters) {
+  setFilter(filters) {
     this._filters = Object.assign({}, filters)
 
-    return this.paginate()
+    return this
   }
 
-  sort(field) {
+  orderBy(field) {
     if (field === this._sort) {
       this._direction = this._direction === 'asc' ? 'desc' : 'asc'
     } else {
@@ -62,30 +66,30 @@ export default class Paginator {
       this._page = FIRST_PAGE
     }
 
-    return this.paginate()
+    return this
   }
 
-  getPage(page, limit) {
+  setPage(page, limit) {
     this._page = page
-    this._limit = limit
+    this._limit = limit || this._limit
 
-    return this.paginate()
+    return this
   }
 
-  getNext() {
+  setNext() {
     if (this._pagination.next_page) {
       this._page = this._pagination.next_page
     }
 
-    return this.paginate()
+    return this
   }
 
-  getPrev() {
+  setPrev() {
     if (this._pagination.previous_page) {
       this._page = this._pagination.previous_page
     }
 
-    return this.paginate()
+    return this
   }
 
   hasNext() {

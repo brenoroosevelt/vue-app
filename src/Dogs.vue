@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-on:keyup.enter="applyFilters">
+    <div v-on:keyup.enter="filter">
       <input type="text" v-model="form.nome">
-      <button @click="applyFilters">Filters</button>
+      <button @click="filter">Filters</button>
     </div>
     <table>
       <thead>
@@ -26,102 +26,62 @@
       <button @click="prevPage">Previous</button>
       <button @click="nextPage">Next</button>
     </p>
-    debug: isLoading= {{isLoading}}, filters={{filter}}, sort={{sorting}}, pagination={{pagination}}
+    debug: isLoading= {{isLoading}}, filters={{form}},
   </div>
 </template>
 
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
-import { http } from './http-common'
 import Paginator from './paginator';
 
 export default {
   name: "Dogs",
   data () {
     return {
-      paginator: null,
+      isLoading: false,
+      paginator: new Paginator('/pessoas'),
       items: [],
-      sorting: {
-        field: 'nome',
-        direction: 'asc',
-      },
-      pagination: {
-        page: 1,
-        limit: 3,
-        total_pages: 0,
-        total_results: 0,
-        next_page: 0,
-        previous_page: 0,
-      },
       form: {
         nome: null
-      },
-      filter: {
-        nome: null,
-      },
-      isLoading: false
+      }
     }
   },
   mounted: function() {
-    this.paginator = new Paginator('/pessoas');
     this.loadItems()
   },
   methods:{
-    queryParams: function () {
-      let params = {
-        filter: this.filter,
-        page: this.pagination.page,
-        limit: this.pagination.limit,
-        sort: {},
-      };
-
-      params.sort[this.sorting.field] = this.sorting.direction
-
-      return params;
-    },
     loadItems: function () {
       if (this.isLoading) {
         return;
       }
 
-      this.isLoading = true
-      http.get('/pessoas', {
-        params: this.queryParams()
-      }).then(res => {
-          this.items = res.data.data
-          this.pagination = res.data.pagination
-        }).finally(() => this.isLoading = false)
+      this.paginator.paginate()
+        .then(res => {
+        this.items = res
+      }).finally(() => this.isLoading = false)
     },
-    applyFilters: function () {
-      this.filter = Object.assign({}, this.form);
-      this.pagination.page = 1
+    filter: function () {
+      this.paginator.setFilters(this.form).setPage(1)
       this.loadItems()
     },
     sort: function (field) {
-      if (field === this.sorting.field) {
-        this.sorting.direction = this.sorting.direction === 'asc' ? 'desc' : 'asc'
-      } else {
-        this.sorting.field = field;
-        this.sorting.direction = 'asc'
-        this.pagination.page = 1
-      }
-
+      this.paginator.orderBy(field)
       this.loadItems()
     },
     nextPage: function() {
-      if (this.pagination.next_page) {
-        this.page(this.pagination.next_page)
-        this.pagination.page = this.pagination.next_page
+      if (this.paginator.hasNext()) {
+        this.paginator.setNext(this.form)
         this.loadItems()
       }
     },
     prevPage: function() {
-      if (this.pagination.previous_page) {
-        this.page(this.pagination.previous_page)
+      if (this.paginator.hasPrev()) {
+        this.paginator.setPrev(this.form)
+        this.loadItems()
       }
     },
     page: function(n) {
-      this.pagination.page = n
+      this.paginator.setPage(n)
       this.loadItems()
     }
   },

@@ -51,42 +51,39 @@ export default {
     }
   },
   mounted: function() {
-    this.loadItems()
+    this.load()
   },
   methods:{
-    loadItems: function () {
+    load: function () {
       if (this.isLoading) {
         return;
       }
 
-      this.paginator.paginate()
-        .then(res => {
-        this.items = res
-      }).finally(() => this.isLoading = false)
+      this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },
     filter: function () {
       this.paginator.setFilters(this.form).setPage(1)
-      this.loadItems()
+      this.load()
     },
     sort: function (field) {
       this.paginator.orderBy(field)
-      this.loadItems()
+      this.load()
     },
     nextPage: function() {
       if (this.paginator.hasNext()) {
         this.paginator.setNext(this.form)
-        this.loadItems()
+        this.load()
       }
     },
     prevPage: function() {
       if (this.paginator.hasPrev()) {
         this.paginator.setPrev(this.form)
-        this.loadItems()
+        this.load()
       }
     },
     page: function(n) {
       this.paginator.setPage(n)
-      this.loadItems()
+      this.load()
     }
   },
   computed:{

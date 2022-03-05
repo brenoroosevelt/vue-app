@@ -21,6 +21,7 @@ class Paginator {
     this._direction = direction
     this._filters = filter
 
+    // values fetched in backend
     this._pagination = {
       page: this._page,
       limit: this._limit,

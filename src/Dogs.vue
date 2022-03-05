@@ -71,13 +71,13 @@ export default {
     },
     nextPage: function() {
       if (this.paginator.hasNext()) {
-        this.paginator.setNext(this.form)
+        this.paginator.setNext()
         this.load()
       }
     },
     prevPage: function() {
       if (this.paginator.hasPrev()) {
-        this.paginator.setPrev(this.form)
+        this.paginator.setPrev()
         this.load()
       }
     },

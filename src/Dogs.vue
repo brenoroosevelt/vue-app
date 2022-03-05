@@ -87,7 +87,6 @@ export default {
       }).then(res => {
           this.items = res.data.data
           this.pagination = res.data.pagination
-          // console.log(res)
         }).finally(() => this.isLoading = false)
     },
     applyFilters: function () {
@@ -124,19 +123,6 @@ export default {
     }
   },
   computed:{
-    // sortedDogs:function() {
-    //   return this.cats.sort((a,b) => {
-    //     let modifier = 1;
-    //     if(this.currentSortDir === 'desc') modifier = -1;
-    //     if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
-    //     if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
-    //     return 0;
-    //   }).filter((row, index) => {
-    //     let start = (this.currentPage - 1) * this.pageSize;
-    //     let end = this.currentPage * this.pageSize;
-    //     if (index >= start && index < end) return true;
-    //   });
-    // }
   }
 }
 </script>

@@ -5,14 +5,14 @@ const DEFAULT_LIMIT = 15
 const DEFAULT_DIRECTION = 'asc'
 
 class Paginator {
-  constructor(endpoint, defaultLimit = DEFAULT_LIMIT, defaultDirection = DEFAULT_DIRECTION) {
+  constructor(endpoint, sort = null, direction = DEFAULT_DIRECTION, page = FIRST_PAGE, limit = DEFAULT_LIMIT) {
     this._endpoint = endpoint
     this._filters = {}
-    this._sort = {}
-    this._page = FIRST_PAGE
-    this._limit = DEFAULT_LIMIT
-    this._defaultLimit = defaultLimit
-    this._direction = defaultDirection
+    this._sort = sort || {}
+    this._page = page
+    this._limit = limit
+    this._defaultLimit = limit
+    this._direction = direction
 
     this._pagination = {
       page: this._page,
@@ -32,7 +32,9 @@ class Paginator {
       sort: {},
     }
 
-    params.sort[this._sort] = this._direction
+    if (this._sort) {
+      params.sort[this._sort] = this._direction
+    }
 
     return http.get(this._endpoint, params: params).then((res) => this._pagination = res.data.pagination)
   }

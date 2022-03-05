@@ -86,4 +86,24 @@ class Paginator {
 
     return this.paginate()
   }
+
+  hasNext() {
+    return !!this._pagination.next_page
+  }
+
+  hasPrev() {
+    return !!this._pagination.previous_page
+  }
+
+  totalResults() {
+    return this._pagination.total_results
+  }
+
+  lastPage() {
+    return this._pagination.total_pages
+  }
+
+  perPage() {
+    return this._limit
+  }
 }

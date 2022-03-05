@@ -80,11 +80,12 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
-    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, './dist'),
+    // historyApiFallback: true,
     noInfo: true,
-    overlay: true,
+    // overlay: true,
     host: '0.0.0.0',
-    port: 8080,
+    port: 8091
   },
   performance: {
     hints: false

@@ -2,7 +2,7 @@
   <div>
     <div v-on:keyup.enter="applyFilters">
       <input type="text" v-model="form.nome">
-      <button @click="applyFilters">Filter</button>
+      <button @click="applyFilters">Filters</button>
     </div>
     <table>
       <thead>
@@ -32,8 +32,7 @@
 
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
-import axios from 'axios';
-import qs from 'qs'
+import { http } from './axios'
 
 export default {
   name: "Dogs",
@@ -83,11 +82,8 @@ export default {
       }
 
       this.isLoading = true
-      axios.get('http://localhost:8080/pessoas', {
-        params: this.queryParams(),
-        paramsSerializer: params => {
-          return qs.stringify(params /*, {encodeValuesOnly: true} */)
-        }
+      http.get('/pessoas', {
+        params: this.queryParams()
       }).then(res => {
           this.items = res.data.data
           this.pagination = res.data.pagination

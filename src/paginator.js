@@ -107,4 +107,16 @@ class Paginator {
   perPage() {
     return this._limit
   }
+
+  currentSort() {
+    return this._sort
+  }
+
+  currentSortDirection() {
+    return this._direction
+  }
+
+  currentPage() {
+    return this._page
+  }
 }

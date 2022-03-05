@@ -26,7 +26,11 @@
       <button @click="prevPage">Previous</button>
       <button @click="nextPage">Next</button>
     </p>
-    debug: isLoading= {{isLoading}}, filters={{form}},
+    <pre>
+isLoading = {{isLoading}},
+filters = {{form}},
+    </pre>
+
   </div>
 </template>
 
@@ -39,7 +43,7 @@ export default {
   data () {
     return {
       isLoading: false,
-      paginator: new Paginator('/pessoas'),
+      paginator: new Paginator('/pessoas', 1, 3, 'nome', 'asc'),
       items: [],
       form: {
         nome: null

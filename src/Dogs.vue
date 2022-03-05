@@ -84,6 +84,10 @@ export default {
     page: function(n) {
       this.paginator.setPage(n)
       this.load()
+    },
+    limit: function(n) {
+      this.paginator.setLimit(n).setPage(1)
+      this.load()
     }
   },
   computed:{

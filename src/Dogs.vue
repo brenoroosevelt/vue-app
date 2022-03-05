@@ -32,7 +32,7 @@
 
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
-import { http } from './axios'
+import { http } from './http-common'
 
 export default {
   name: "Dogs",

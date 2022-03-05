@@ -23,12 +23,12 @@ export default class Paginator {
 
     // values fetched in backend
     this._pagination = {
-      page: this._page, // current-page
-      limit: this._limit, // per-page
-      total_pages: 0, // total-pages = last-page
-      total_results: 0, // total items on current page
-      next_page: 0, // next-page or null
-      previous_page: 0, // previous page or null
+      page: this._page,   // current page
+      limit: this._limit, // items per page
+      total_pages: 0,     // total pages = last page
+      total_results: 0,   // total items on current page
+      next_page: 0,       // next page or null
+      previous_page: 0,   // previous page or null
     }
   }
 

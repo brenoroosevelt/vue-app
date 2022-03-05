@@ -33,11 +33,13 @@
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
 import { http } from './http-common'
+import Paginator from './paginator';
 
 export default {
   name: "Dogs",
   data () {
     return {
+      paginator: null,
       items: [],
       sorting: {
         field: 'nome',
@@ -61,6 +63,7 @@ export default {
     }
   },
   mounted: function() {
+    this.paginator = new Paginator('/pessoas');
     this.loadItems()
   },
   methods:{

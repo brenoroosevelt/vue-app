@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: vue_frontend
+    image: node:stretch
+    volumes:
+      - ./:/app
+    ports:
+      - 8091:8080
+    working_dir: /app
+    command: bash -c "npm install && npm run dev"
+    networks:
+      - network_app
+    depends_on:
+      - "backend"
+
+  backend:
+    container_name: php_backend
+    image: webdevops/php-apache-dev:8.1
+    working_dir: /app
+    environment:
+      docker: "true"
+      DEV_MODE: 1
+#    command: php -S 0.0.0.0:8080 -t web
+
+    volumes:
+      - ../app:/app
+    ports:
+      - 8080:80
+    networks:
+      - network_app
+
+networks:
+  network_app:
+    driver: bridge

@@ -23,12 +23,12 @@ export default class Paginator {
 
     // values fetched in backend
     this._pagination = {
-      page: this._page,
-      limit: this._limit,
-      total_pages: 0,
-      total_results: 0,
-      next_page: 0,
-      previous_page: 0,
+      page: this._page, // current-page
+      limit: this._limit, // per-page
+      total_pages: 0, // total-pages = last-page
+      total_results: 0, // total items on current page
+      next_page: 0, // next-page or null
+      previous_page: 0, // previous page or null
     }
   }
 
@@ -45,7 +45,7 @@ export default class Paginator {
     }
 
     /**
-     * Expected response (json):
+     * Values fetched in backend. Expected response (json):
      * {
      *   "data": [...],
      *   "pagination" {

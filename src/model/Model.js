@@ -1,10 +1,9 @@
 export default class Model {
   toBackEnd() {
     let data = {}
-    for (let key in this) {
-      if (Object.prototype.hasOwnProperty.call(this, key)) {
-        data[key] = this[key]
-      }
+    let keys = Object.keys(this);
+    for (let i = 0; i < keys.length; i++) {
+      data[keys[i]] = obj[keys[i]];
     }
 
     return data

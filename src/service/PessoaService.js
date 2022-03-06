@@ -2,7 +2,7 @@ import { http } from '../http-common'
 import Paginator from '../paginator'
 
 const ENDPOINT = '/pessoas'
-const withId = (id) => `${ENDPOINT}/${id}`
+const ofId = (id) => `${ENDPOINT}/${id}`
 
 export default class PessoaService {
 
@@ -11,7 +11,7 @@ export default class PessoaService {
   }
 
   static get(id) {
-    return http.get(withId(id))
+    return http.get(ofId(id))
   }
 
   async doany () {

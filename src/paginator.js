@@ -34,7 +34,7 @@ export default class Paginator {
 
   paginate() {
     let params = {
-      filter: this._filter,
+      filter: this._filters,
       page: this._page,
       limit: this._limit,
       sort: {},

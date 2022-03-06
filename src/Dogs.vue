@@ -52,15 +52,12 @@ export default {
   },
   mounted: function() {
     this.load()
-    let x = new PessoaService
-    // x.doany()
   },
   methods: {
     load: async function () {
       if (this.isLoading) {
         return;
       }
-      const x = this.paginator.paginate;
 
       return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },

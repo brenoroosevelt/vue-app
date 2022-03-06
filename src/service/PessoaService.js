@@ -7,8 +7,8 @@ const ofId = (id) => `${ENDPOINT}/${id}`
 
 export default class PessoaService {
 
-  static newPaginator(page = FIRST_PAGE, limit = DEFAULT_LIMIT, sort = 'nome', sortDirection = DEFAULT_DIRECTION) {
-    return (new Paginator(ENDPOINT, page, limit, sort, sortDirection)).setParser((d) => PessoaService.toModel(d))
+  static newPaginator(page = FIRST_PAGE, limit = DEFAULT_LIMIT, sort = 'nome', direction = DEFAULT_DIRECTION) {
+    return (new Paginator(ENDPOINT, page, limit, sort, direction)).setParser((d) => PessoaService.toModel(d))
   }
 
   static toModel(data) {

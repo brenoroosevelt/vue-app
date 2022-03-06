@@ -2,7 +2,7 @@ import { http } from './http-common'
 
 const FIRST_PAGE = 1
 const DEFAULT_LIMIT = 15
-const DIRECTION { ASC: 'asc', DESC: 'desc' }
+const DIRECTION = { ASC: 'asc', DESC: 'desc' }
 const DEFAULT_DIRECTION = DIRECTION.ASC
 const ITEMS_KEY = 'data'
 

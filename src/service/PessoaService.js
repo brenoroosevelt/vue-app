@@ -1,7 +1,7 @@
 import { http } from '../http-common'
 import Paginator from '../paginator'
 
-const ENDPOINT = '/pessoas/'
+const ENDPOINT = '/pessoas'
 
 export default class PessoaService {
   /**
@@ -12,7 +12,7 @@ export default class PessoaService {
    * @return Paginator
    */
   static newPaginator(page = 1, limit = 15, sort = 'nome', sortDirection = 'asc') {
-    return new Paginator(ENDPOINT, page, limit, sort, sortDirection)
+    return new Paginator(`${ENDPOINT}`, page, limit, sort, sortDirection)
   }
 
   /**
@@ -20,7 +20,7 @@ export default class PessoaService {
    * @return Promise
    */
   static get(id) {
-    return http.get(ENDPOINT + id)
+    return http.get(`${ENDPOINT}/${id}`)
   }
 
   async doany () {

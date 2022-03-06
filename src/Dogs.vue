@@ -36,7 +36,6 @@ filters = {{form}},
 
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
-import Paginator from './paginator';
 import PessoaService from './service/PessoaService';
 
 export default {
@@ -44,7 +43,7 @@ export default {
   data () {
     return {
       isLoading: false,
-      paginator: new Paginator('/pessoas', 1, 3, 'nome', 'asc'),
+      paginator: PessoaService.newPaginator(),
       items: [],
       form: {
         nome: null

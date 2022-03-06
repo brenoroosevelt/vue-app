@@ -54,16 +54,16 @@ export default {
   mounted: function() {
     this.load()
     let x = new PessoaService
-    x.doany()
+    // x.doany()
   },
   methods: {
-    load: function () {
+    load: async function () {
       if (this.isLoading) {
         return;
       }
       const x = this.paginator.paginate;
 
-      this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
+      return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },
     filter: function () {
       this.paginator.setFilters(this.form).setPage(1)

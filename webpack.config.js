@@ -55,8 +55,9 @@ module.exports = {
               'vue-style-loader',
               'css-loader',
               'sass-loader?indentedSyntax'
-            ]
-          }
+            ],
+            'js': 'babel-loader'
+          },
           // other vue-loader options go here
         }
       },

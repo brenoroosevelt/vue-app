@@ -141,8 +141,8 @@ class Paginator {
 }
 
 export {
+  Paginator,
   FIRST_PAGE,
   DEFAULT_LIMIT,
-  DEFAULT_DIRECTION,
-  Paginator
+  DEFAULT_DIRECTION
 }

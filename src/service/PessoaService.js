@@ -13,7 +13,7 @@ export default class PessoaService {
    * @return Paginator
    */
   static newPaginator(page = 1, limit = 15, sort = 'nome', sortDirection = 'asc') {
-    return new Paginator(`${ENDPOINT}`, page, limit, sort, sortDirection)
+    return new Paginator(ENDPOINT, page, limit, sort, sortDirection)
   }
 
   /**

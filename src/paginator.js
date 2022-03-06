@@ -3,6 +3,7 @@ import { http } from './http-common'
 const FIRST_PAGE = 1
 const DEFAULT_LIMIT = 15
 const DEFAULT_DIRECTION = 'asc'
+const ITEMS_KEY = 'data'
 
 class Paginator {
   constructor(
@@ -49,7 +50,7 @@ class Paginator {
       .then((response) => {
         this._pagination = response.data.pagination
         if (this._parser instanceof Function) {
-          return response.data.data.map((item) => this._parser(item))
+          return response.data[ITEMS_KEY].map((item) => this._parser(item))
         }
 
         return response.data.data

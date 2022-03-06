@@ -46,13 +46,13 @@ class Paginator {
     }
 
     return http.get(this._endpoint, { params: params })
-      .then((res) => {
-        this._pagination = res.data.pagination
+      .then((response) => {
+        this._pagination = response.data.pagination
         if (this._parser instanceof Function) {
-          return this._parser(res.data.data)
+          return response.data.data.map((item) => this._parser(item))
         }
 
-        return res.data.data
+        return response.data.data
       })
   }
 

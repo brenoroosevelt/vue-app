@@ -5,7 +5,6 @@ const ENDPOINT = '/pessoas/'
 
 export default class PessoaService {
   /**
-   *
    * @param page integer
    * @param limit integer
    * @param sort string

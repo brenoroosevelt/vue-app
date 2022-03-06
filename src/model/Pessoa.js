@@ -8,7 +8,7 @@ export default class Pessoa extends Model {
     this.id = id
     this.nome = nome
   }
-
+  
   static fromBackEnd(data) {
     return new Pessoa(data.id, data.nome)
   }

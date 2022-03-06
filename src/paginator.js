@@ -20,6 +20,7 @@ class Paginator {
     this._sort = sort
     this._direction = direction
     this._filters = filter
+    this._parser = (response) => response
 
     // values fetched in backend
     this._pagination = {
@@ -47,8 +48,18 @@ class Paginator {
     return http.get(this._endpoint, { params: params })
       .then((res) => {
         this._pagination = res.data.pagination
+        if (this._parser instanceof Function) {
+          return this._parser(res.data.data)
+        }
+
         return res.data.data
       })
+  }
+
+  setParser(callback) {
+    this._parser = callback
+
+    return this
   }
 
   setFilters(filters) {

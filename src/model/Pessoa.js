@@ -2,8 +2,11 @@ import Model from './Model'
 
 export default class Pessoa extends Model {
   constructor(id, nome) {
-    this.id = id;
-    this.nome = nome;
+    this._id = undefined;
+    this._nome = undefined;
+
+    this.id = id
+    this.nome = nome
   }
 
   static fromBackEnd(data) {

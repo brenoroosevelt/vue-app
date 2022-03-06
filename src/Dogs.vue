@@ -37,7 +37,6 @@ filters = {{form}},
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
 import Paginator from './paginator';
-import { getPessoa } from './service/PessoaService'
 
 export default {
   name: "Dogs",

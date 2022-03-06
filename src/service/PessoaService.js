@@ -12,7 +12,7 @@ export default class PessoaService {
   }
 
   static toModel(data) {
-    return new Pessoa(data.id, data.nome)
+    return new Pessoa(data.id, data.nome, data.created_at)
   }
 
   static get(id) {

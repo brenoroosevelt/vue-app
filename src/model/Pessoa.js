@@ -1,6 +1,4 @@
-import Model from './Model'
-
-export default class Pessoa extends Model {
+export default class Pessoa {
   constructor(id, nome) {
     this._id = undefined;
     this._nome = undefined;
@@ -8,7 +6,7 @@ export default class Pessoa extends Model {
     this.id = id
     this.nome = nome
   }
-  
+
   static fromBackEnd(data) {
     return new Pessoa(data.id, data.nome)
   }

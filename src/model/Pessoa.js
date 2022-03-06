@@ -19,4 +19,12 @@ export default class Pessoa {
   set nome(value) {
     this._nome = value;
   }
+
+  toBackend() {
+    return { id: this._id, nome: this._nome}
+  }
+
+  static fromBackend(data) {
+    return new Pessoa(data.id, data.nome)
+  }
 }

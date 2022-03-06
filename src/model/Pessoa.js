@@ -6,7 +6,7 @@ export default class Pessoa {
 
     this.id = id
     this.nome = nome
-    this._created_at = created_at
+    this.created_at = created_at
   }
 
   get id() {
@@ -25,11 +25,14 @@ export default class Pessoa {
     this._nome = value;
   }
 
+  /**
+   * @return Date
+   */
   get created_at() {
-    return this._created_at;
+    return this._created_at.toLocaleString('pt-Br')
   }
 
   set created_at(value) {
-    this._created_at = value;
+    this._created_at = new Date(Date.parse(value));
   }
 }

@@ -70,14 +70,37 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        exclude: /node_modules/,
       }
+      // {
+      //   test: /\.tsx?$/,
+      //   use: [
+      //     {
+      //       loader: "babel-loader",
+      //       options: {
+      //         cacheDirectory: true,
+      //         presets: [["babel/preset-env", { targets: { node: "8" } }]]
+      //       }
+      //     },
+      //     "ts-loader"
+      //   ],
+      //   exclude: /node_modules/
+      // }
     ]
   },
   resolve: {
+    extensions: ['*', '.ts','.js', '.vue', '.json'],
+    // alias: {
+    //   '@': path.resolve(__dirname, 'src')
+    // }
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    // extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
@@ -110,6 +133,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
   ])
 }

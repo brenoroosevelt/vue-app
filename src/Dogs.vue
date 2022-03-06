@@ -37,6 +37,7 @@ filters = {{form}},
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
 import Paginator from './paginator';
+import Service from './service'
 
 export default {
   name: "Dogs",
@@ -52,8 +53,10 @@ export default {
   },
   mounted: function() {
     this.load()
+    let s = new Service(1)
+    console.log(s.sayHello())
   },
-  methods:{
+  methods: {
     load: function () {
       if (this.isLoading) {
         return;

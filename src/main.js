@@ -9,7 +9,7 @@ import './app.scss'
 Vue.use(BootstrapVue)
 // Vue.use(IconsPlugin)
 Vue.use(LayoutPlugin)
-
+Vue.config.productionTip = false
 
 new Vue({
   // router,

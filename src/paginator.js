@@ -26,7 +26,7 @@ export default class Paginator {
       page: this._page,   // current page
       limit: this._limit, // items per page
       total_pages: 0,     // total pages = last page
-      total_results: 0,   // total items on current page
+      total_results: 0,   // total items
       next_page: 0,       // next page or null
       previous_page: 0,   // previous page or null
     }
@@ -44,20 +44,6 @@ export default class Paginator {
       params.sort[this._sort] = this._direction
     }
 
-    /**
-     * Values fetched in backend. Expected response (json):
-     * {
-     *   "data": [...],
-     *   "pagination" {
-     *     page: 1,
-     *     limit: 15,
-     *     total_pages: 0,
-     *     total_results: 0,
-     *     next_page: 0,
-     *     previous_page: 0,
-     *   }
-     * }
-     */
     return http.get(this._endpoint, { params: params })
       .then((res) => {
         this._pagination = res.data.pagination
@@ -65,7 +51,7 @@ export default class Paginator {
       })
   }
 
-  setFilter(filters) {
+  setFilters(filters) {
     this._filters = Object.assign({}, filters)
 
     return this

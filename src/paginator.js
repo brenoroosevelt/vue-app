@@ -70,13 +70,15 @@ class Paginator {
     return this
   }
 
-  orderBy(field) {
+  orderBy(field, firstPage = false) {
     if (field === this._sort) {
       this._direction = this._direction === DIRECTION.ASC ? DIRECTION.DESC : DIRECTION.ASC
     } else {
       this._sort = field;
       this._direction = DEFAULT_DIRECTION
-      this._page = FIRST_PAGE
+      if (firstPage) {
+        this._page = FIRST_PAGE
+      }
     }
 
     return this

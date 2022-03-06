@@ -7,10 +7,6 @@ export default class Pessoa {
     this.nome = nome
   }
 
-  static fromBackEnd(data) {
-    return new Pessoa(data.id, data.nome)
-  }
-
   get id() {
     return this._id;
   }

@@ -7,4 +7,12 @@ export default class PessoaService {
   static newPaginator(page = 1, limit = 15, sort = 'nome', sortDirection = 'asc') {
     return new Paginator(ENDPOINT, page, limit, sort, sortDirection)
   }
+
+  /**
+   * @return Pessoa
+   * @param id
+   */
+  static get(id) {
+
+  }
 }

@@ -2,16 +2,16 @@ import { http } from '../http-common'
 import Paginator from '../paginator'
 
 const ENDPOINT = '/pessoas'
-const ENDPOINT_ID = (id) => `${ENDPOINT}/${id}`
+const withId = (id) => `${ENDPOINT}/${id}`
 
 export default class PessoaService {
 
   static newPaginator(page = 1, limit = 15, sort = 'nome', sortDirection = 'asc') {
     return new Paginator(ENDPOINT, page, limit, sort, sortDirection)
   }
-  
+
   static get(id) {
-    return http.get(ENDPOINT_ID(id))
+    return http.get(withId(id))
   }
 
   async doany () {

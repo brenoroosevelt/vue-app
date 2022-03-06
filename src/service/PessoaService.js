@@ -17,6 +17,7 @@ export default class PessoaService {
 
   /**
    * @param id string
+   * @return Promise
    */
   static get(id) {
     return http.get(ENDPOINT + id)

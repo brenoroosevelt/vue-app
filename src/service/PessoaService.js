@@ -9,8 +9,7 @@ export default class PessoaService {
   }
 
   /**
-   * @return Pessoa
-   * @param id
+   * @param id string
    */
   static get(id) {
 

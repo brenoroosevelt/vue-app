@@ -32,7 +32,7 @@ class Paginator {
     }
   }
 
-  paginate() {
+  async paginate() {
     let params = {
       filter: this._filters,
       page: this._page,

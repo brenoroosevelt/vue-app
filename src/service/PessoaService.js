@@ -1,12 +1,17 @@
 import { http } from '../http-common'
-import Paginator from '../paginator'
+import {
+  FIRST_PAGE,
+  DEFAULT_LIMIT,
+  DEFAULT_DIRECTION,
+  Paginator
+} from '../paginator'
 
 const ENDPOINT = '/pessoas'
 const ofId = (id) => `${ENDPOINT}/${id}`
 
 export default class PessoaService {
 
-  static newPaginator(page = 1, limit = 15, sort = 'nome', sortDirection = 'asc') {
+  static newPaginator(page = FIRST_PAGE, limit = DEFAULT_LIMIT, sort = 'nome', sortDirection = DEFAULT_DIRECTION) {
     return new Paginator(ENDPOINT, page, limit, sort, sortDirection)
   }
 

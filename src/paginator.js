@@ -4,7 +4,7 @@ const FIRST_PAGE = 1
 const DEFAULT_LIMIT = 15
 const DEFAULT_DIRECTION = 'asc'
 
-export default class Paginator {
+class Paginator {
   constructor(
     endpoint,
     page = FIRST_PAGE,
@@ -123,4 +123,11 @@ export default class Paginator {
   currentPage() {
     return this._page
   }
+}
+
+export {
+  FIRST_PAGE,
+  DEFAULT_LIMIT,
+  DEFAULT_DIRECTION,
+  Paginator
 }

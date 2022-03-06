@@ -24,6 +24,7 @@ export default class PessoaService {
   }
 
   async doany () {
-    return await http.get(ENDPOINT)
+    const { data } = await http.get(ENDPOINT)
+    return data
   }
 }

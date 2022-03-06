@@ -2,7 +2,8 @@ import { http } from './http-common'
 
 const FIRST_PAGE = 1
 const DEFAULT_LIMIT = 15
-const DEFAULT_DIRECTION = 'asc'
+const DIRECTION { ASC: 'asc', DESC: 'desc' }
+const DEFAULT_DIRECTION = DIRECTION.ASC
 const ITEMS_KEY = 'data'
 
 class Paginator {
@@ -71,7 +72,7 @@ class Paginator {
 
   orderBy(field) {
     if (field === this._sort) {
-      this._direction = this._direction === 'asc' ? 'desc' : 'asc'
+      this._direction = this._direction === DIRECTION.ASC ? DIRECTION.DESC : DIRECTION.ASC
     } else {
       this._sort = field;
       this._direction = DEFAULT_DIRECTION

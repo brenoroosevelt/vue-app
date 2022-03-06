@@ -6,14 +6,14 @@ export default class PessoaService {
     return {
       id: '',
       nome: ''
-    };
+    }
   }
 
   async update(id: string): Promise<Pessoa> {
     return {
       id: '',
       nome: ''
-    };
+    }
   }
 
   delete(id: string): void {

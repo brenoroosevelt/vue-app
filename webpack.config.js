@@ -1,8 +1,9 @@
+require("babel-polyfill");
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: ["babel-polyfill", "./src/main.js"],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -62,9 +63,6 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
-        },
         exclude: /node_modules/
       },
       {
@@ -136,7 +134,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
-    new webpack.NamedModulesPlugin(),
+    })
   ])
 }

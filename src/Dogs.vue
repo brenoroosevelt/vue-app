@@ -37,6 +37,7 @@ filters = {{form}},
 <script>
 // https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios
 import Paginator from './paginator';
+import PessoaService from './service/PessoaService';
 
 export default {
   name: "Dogs",
@@ -52,12 +53,15 @@ export default {
   },
   mounted: function() {
     this.load()
+    let x = new PessoaService
+    x.doany()
   },
   methods: {
     load: function () {
       if (this.isLoading) {
         return;
       }
+      const x = this.paginator.paginate;
 
       this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },

@@ -22,4 +22,8 @@ export default class PessoaService {
   static get(id) {
     return http.get(ENDPOINT + id)
   }
+
+  async doany () {
+    return await http.get(ENDPOINT)
+  }
 }

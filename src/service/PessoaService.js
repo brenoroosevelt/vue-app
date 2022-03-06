@@ -1,10 +1,5 @@
 import { http } from '../http-common'
-import {
-  FIRST_PAGE,
-  DEFAULT_LIMIT,
-  DEFAULT_DIRECTION,
-  Paginator
-} from '../paginator'
+import {FIRST_PAGE, DEFAULT_LIMIT, DEFAULT_DIRECTION, Paginator} from '../paginator'
 
 const ENDPOINT = '/pessoas'
 const ofId = (id) => `${ENDPOINT}/${id}`

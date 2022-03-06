@@ -20,7 +20,7 @@ class Paginator {
     this._limit = limit
     this._defaultLimit = limit
     this._sort = sort
-    this._direction = direction
+    this._direction = Array.from(DIRECTION).includes(direction) ? direction : DEFAULT_DIRECTION
     this._filters = filter
     this._parser = (response) => response
 

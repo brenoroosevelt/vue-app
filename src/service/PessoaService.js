@@ -6,7 +6,6 @@ const ENDPOINT = '/pessoas'
 const ofId = (id) => `${ENDPOINT}/${id}`
 
 export default class PessoaService {
-
   static newPaginator(page = FIRST_PAGE, limit = DEFAULT_LIMIT, sort = 'nome', direction = DEFAULT_DIRECTION) {
     return (new Paginator(ENDPOINT, page, limit, sort, direction)).setParser((d) => PessoaService.toModel(d))
   }
@@ -15,12 +14,19 @@ export default class PessoaService {
     return new Pessoa(data.id, data.nome, data.created_at)
   }
 
-  static get(id) {
-    return http.get(ofId(id))
+  static async get(id) {
+    const { data } = await http.get(ofId(id))
+
+    return PessoaService.toModel(data)
   }
 
-  async doany () {
-    const { data } = await http.get(ENDPOINT)
-    return data
+  static async create(pessoa) {
+    const postData = {
+      nome: pessoa.nome
+    }
+
+    const { data } = await http.post(ENDPOINT, postData)
+
+    return PessoaService.toModel(data)
   }
 }

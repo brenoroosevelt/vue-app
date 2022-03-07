@@ -59,9 +59,14 @@ export default {
         return;
       }
 
-      this.isLoading = true
-      this.items = await this.paginator.paginate()
-      this.isLoading = false
+      try {
+        this.isLoading = true
+        this.items = await this.paginator.paginate()
+      } catch (error) {
+        console.log(error)
+      } finally {
+        this.isLoading = false
+      }
 
       // return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },

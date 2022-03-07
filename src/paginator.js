@@ -5,6 +5,7 @@ const DEFAULT_LIMIT = 15
 const DIRECTION = { ASC: 'asc', DESC: 'desc' }
 const DEFAULT_DIRECTION = DIRECTION.ASC
 const ITEMS_KEY = 'data'
+const PAGINATION_KEY = 'pagination'
 
 class Paginator {
   constructor(
@@ -46,10 +47,11 @@ class Paginator {
     if (this._sort) {
       params.sort[this._sort] = this._direction
     }
-    
+
     try {
       const { data } = await http.get(this._endpoint, { params: params })
-
+      this._pagination = data[PAGINATION_KEY]
+      
       return {
         items: data[ITEMS_KEY].map((item) => this._parser(item)),
         error: undefined

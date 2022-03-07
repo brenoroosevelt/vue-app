@@ -3,7 +3,7 @@ export default class Pessoa {
     this.id = id
     this.nome = nome
     this.created_at = created_at
-    this._mais = mais || console.error('Pessoa::_mais not provided') || 2
+    this._mais = mais || console.error('Pessoa::_mais is required')
   }
 
   static fromData(data) {

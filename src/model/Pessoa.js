@@ -37,9 +37,9 @@ export default class Pessoa {
 
   /**
    *
-   * @param value string|Date
+   * @param value integer|string|Date
    */
   set created_at(value) {
-    this._created_at = value instanceof Date ? value : new Date(Date.parse(value));
+    this._created_at = value instanceof Date ? value : new Date(value);
   }
 }

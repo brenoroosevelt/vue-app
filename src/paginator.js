@@ -59,7 +59,7 @@ class Paginator {
   }
 
   setParser(callback) {
-    this._parser = callback
+    this._parser = callback || (item) => item
 
     return this
   }

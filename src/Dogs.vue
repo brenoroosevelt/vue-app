@@ -61,7 +61,7 @@ export default {
 
       this.isLoading = true
       return this.paginator.paginate()
-        .then(items => this.items = items)
+        .then((items) => this.items = items)
         .catch((error) => console.log(error))
         .finally(() => this.isLoading = false)
 

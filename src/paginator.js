@@ -46,8 +46,7 @@ class Paginator {
     if (this._sort) {
       params.sort[this._sort] = this._direction
     }
-
-
+    
     try {
       const { data } = await http.get(this._endpoint, { params: params })
 

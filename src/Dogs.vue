@@ -60,15 +60,9 @@ export default {
       }
 
       this.isLoading = true
-      const { items, error } = await this.paginator.paginate()
+      this.items = await this.paginator.paginate()
       this.isLoading = false
-
-      if (error) {
-        console.log(error)
-      } else {
-        this.items = items
-      }
-
+      
       // return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },
     filter: function () {

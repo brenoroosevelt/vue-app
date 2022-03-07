@@ -48,31 +48,27 @@ class Paginator {
       params.sort[this._sort] = this._direction
     }
 
-    try {
-      const { data } = await http.get(this._endpoint, { params: params })
-      this._pagination = data[PAGINATION_KEY]
-      
-      return {
-        items: data[ITEMS_KEY].map((item) => this._parser(item)),
-        error: undefined
-      }
-    } catch (error) {
-
-      return {
-        items: undefined,
-        error: error
-      }
-    }
-
-    // return http.get(this._endpoint, { params: params })
-    //   .then((response) => {
-    //     this._pagination = response.data.pagination
-    //     if (this._parser instanceof Function) {
-    //       return response.data[ITEMS_KEY].map((item) => this._parser(item))
-    //     }
+    // try {
+    //   const { data } = await http.get(this._endpoint, { params: params })
+    //   this._pagination = data[PAGINATION_KEY]
     //
-    //     return response.data.data
-    //   })
+    //   return {
+    //     items: data[ITEMS_KEY].map((item) => this._parser(item)),
+    //     error: undefined
+    //   }
+    // } catch (error) {
+    //
+    //   return {
+    //     items: undefined,
+    //     error: error
+    //   }
+    // }
+
+    return await http.get(this._endpoint, { params: params })
+      .then((response) => {
+        this._pagination = response.data[PAGINATION_KEY]
+        return response.data[ITEMS_KEY].map((item) => this._parser(item))
+      })
   }
 
   setParser(callback) {

@@ -3,7 +3,8 @@ export default class Pessoa {
     this.id = id
     this.nome = nome
     this.created_at = created_at
-    this._mais = required(mais, 'required field `mais` is missing')
+
+    required(mais, 'required field `mais` is missing')
   }
 
   static fromData(data) {

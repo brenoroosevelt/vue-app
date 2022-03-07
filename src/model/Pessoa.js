@@ -1,3 +1,5 @@
+import { object, string, number, date } from 'yup';
+
 export default class Pessoa {
   constructor(id, nome, created_at, mais) {
     this.id = id
@@ -5,6 +7,17 @@ export default class Pessoa {
     this.created_at = created_at
 
     required(mais, 'required field `mais` is missing')
+  }
+
+  static schema() {
+    return object({
+      id: string().uuid().nullable(),
+      name: string().required(),
+      age: number().required().positive().integer(),
+      email: string().email(),
+      website: string().url().nullable(),
+      createdOn: date().default(() => new Date()),
+    });
   }
 
   static fromData(data) {

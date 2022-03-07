@@ -14,7 +14,8 @@
     "vue-router": "^3.0.3",
     "bootstrap-vue": "2.21.2",
     "axios": "*",
-    "qs": "*"
+    "qs": "*",
+    "yup": "*"
   },
   "browserslist": [
     "> 1%",

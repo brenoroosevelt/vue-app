@@ -63,15 +63,15 @@ class Paginator {
       }
     }
 
-    return http.get(this._endpoint, { params: params })
-      .then((response) => {
-        this._pagination = response.data.pagination
-        if (this._parser instanceof Function) {
-          return response.data[ITEMS_KEY].map((item) => this._parser(item))
-        }
-
-        return response.data.data
-      })
+    // return http.get(this._endpoint, { params: params })
+    //   .then((response) => {
+    //     this._pagination = response.data.pagination
+    //     if (this._parser instanceof Function) {
+    //       return response.data[ITEMS_KEY].map((item) => this._parser(item))
+    //     }
+    //
+    //     return response.data.data
+    //   })
   }
 
   setParser(callback) {

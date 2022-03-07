@@ -6,22 +6,32 @@ export default class Pessoa {
     this.nome = nome
     this.created_at = created_at
 
-    required(mais, 'required field `mais` is missing')
+    // required(mais, 'required field `mais` is missing')
   }
 
   static schema() {
     return object({
       id: string().uuid().nullable(),
-      name: string().required(),
-      age: number().required().positive().integer(),
-      email: string().email(),
-      website: string().url().nullable(),
-      createdOn: date().default(() => new Date()),
+      nome: string().required(),
+      // age: number().required().positive().integer(),
+      // email: string().email(),
+      // website: string().url().nullable(),
+      //created_at: date().default(() => new Date()),
+      created_at: date().required()
     });
   }
 
-  static fromData(data) {
-    return new Pessoa(data.id, data.nome, data.created_at)
+  static async fromData(data) {
+    const schema = Pessoa.schema()
+    try {
+      const parsed = schema.cast(data)
+      const pessoa = await schema.validate(parsed, { strict: true })
+      console.log(pessoa)
+
+      return new Pessoa(pessoa.id, pessoa.nome, pessoa.created_at)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   get id() {

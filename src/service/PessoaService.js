@@ -11,18 +11,14 @@ export default class PessoaService {
   }
 
   static async get(id) {
-    const { data } = await http.get(endpointOfId(id))
-
-    return Pessoa.fromData(data)
+    return http.get(endpointOfId(id)).then((response) => Pessoa.fromData(response.data))
   }
 
-  static async create(pessoa) {
+  static async create(data) {
     const postData = {
-      nome: pessoa.nome
+      nome: data.nome
     }
 
-    const { data } = await http.post(endpoint, postData)
-
-    return Pessoa.fromData(data)
+    return http.post(endpoint, postData).then((response) => Pessoa.fromData(response.data))
   }
 }

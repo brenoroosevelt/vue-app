@@ -1,9 +1,5 @@
 export default class Pessoa {
   constructor(id, nome, created_at) {
-    this._id = undefined;
-    this._nome = undefined;
-    this._created_at = undefined;
-
     this.id = id
     this.nome = nome
     this.created_at = created_at

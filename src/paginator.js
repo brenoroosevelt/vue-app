@@ -22,7 +22,7 @@ class Paginator {
     this._sort = sort
     this._direction = Array.from(DIRECTION).includes(direction) ? direction : DEFAULT_DIRECTION
     this._filters = filter
-    this._parser = (response) => response
+    this._parser = (item) => item
 
     // values fetched in backend
     this._pagination = {

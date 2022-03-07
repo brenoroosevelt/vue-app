@@ -4,7 +4,7 @@ import App from './App.vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import { LayoutPlugin } from 'bootstrap-vue'
 
-import './app.scss'
+import './style/app.scss'
 
 Vue.use(BootstrapVue)
 // Vue.use(IconsPlugin)

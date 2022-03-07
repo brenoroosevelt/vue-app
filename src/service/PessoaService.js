@@ -1,5 +1,5 @@
-import { http } from '../http-common'
-import { FIRST_PAGE, DEFAULT_LIMIT, DEFAULT_DIRECTION, Paginator } from '../paginator'
+import { http } from '../common/http-common'
+import { FIRST_PAGE, DEFAULT_LIMIT, DEFAULT_DIRECTION, Paginator } from '../common/paginator'
 import Pessoa from '../model/Pessoa'
 
 const endpoint = '/pessoas'

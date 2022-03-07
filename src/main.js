@@ -11,6 +11,11 @@ Vue.use(BootstrapVue)
 Vue.use(LayoutPlugin)
 Vue.config.productionTip = false
 
+window.required = function (item, message){
+  if (item === undefined) console.error(message)
+  return item
+}
+
 new Vue({
   // router,
   // store,

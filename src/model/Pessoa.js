@@ -1,5 +1,3 @@
-import required from '../common/required';
-
 export default class Pessoa {
   constructor(id, nome, created_at, mais) {
     this.id = id

@@ -1,8 +1,9 @@
 export default class Pessoa {
-  constructor(id, nome, created_at) {
+  constructor(id, nome, created_at, mais) {
     this.id = id
     this.nome = nome
     this.created_at = created_at
+    this._mais = mais || console.error('Pessoa::_mais not provided') || 2
   }
 
   static fromData(data) {

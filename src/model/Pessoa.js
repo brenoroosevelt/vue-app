@@ -9,6 +9,10 @@ export default class Pessoa {
     this.created_at = created_at
   }
 
+  static fromData(data) {
+    return new Pessoa(data.id, data.nome, data.created_at)
+  }
+
   get id() {
     return this._id;
   }

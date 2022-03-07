@@ -12,7 +12,6 @@ export default class PessoaService {
 
   static async get(id) {
     const { data } = await http.get(ofId(id))
-
     return Pessoa.fromData(data)
   }
 
@@ -20,9 +19,7 @@ export default class PessoaService {
     const postData = {
       nome: pessoa.nome
     }
-
     const { data } = await http.post(ENDPOINT, postData)
-
     return Pessoa.fromData(data)
   }
 }

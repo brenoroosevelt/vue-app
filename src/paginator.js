@@ -50,6 +50,7 @@ class Paginator {
 
     try {
       const { data } = await http.get(this._endpoint, { params: params })
+
       return {
         items: data[ITEMS_KEY].map((item) => this._parser(item)),
         error: undefined

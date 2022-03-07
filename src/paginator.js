@@ -47,6 +47,21 @@ class Paginator {
       params.sort[this._sort] = this._direction
     }
 
+
+    try {
+      const { data } = await http.get(this._endpoint, { params: params })
+      return {
+        items: data[ITEMS_KEY].map((item) => this._parser(item)),
+        error: undefined
+      }
+    } catch (error) {
+
+      return {
+        items: undefined,
+        error: error
+      }
+    }
+
     return http.get(this._endpoint, { params: params })
       .then((response) => {
         this._pagination = response.data.pagination
@@ -59,7 +74,7 @@ class Paginator {
   }
 
   setParser(callback) {
-    this._parser = callback || (item) => item
+    this._parser = callback
 
     return this
   }

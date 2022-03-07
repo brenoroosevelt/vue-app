@@ -59,7 +59,17 @@ export default {
         return;
       }
 
-      return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
+      this.isLoading = true
+      const { items, error } = await this.paginator.paginate()
+      this.isLoading = false
+
+      if (error) {
+        console.log(error)
+      } else {
+        this.items = items
+      }
+
+      // return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },
     filter: function () {
       this.paginator.setFilters(this.form).setPage(1)

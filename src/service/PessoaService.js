@@ -6,7 +6,7 @@ const endpoint = '/pessoas'
 const ofId = (id) => `${endpoint}/${id}`
 
 export default class PessoaService {
-  static newPaginator(page = FIRST_PAGE, limit = 3, sort = 'nome', direction = DEFAULT_DIRECTION) {
+  static newPaginator(page = FIRST_PAGE, limit = DEFAULT_LIMIT, sort = 'nome', direction = DEFAULT_DIRECTION) {
     return (new Paginator(endpoint, page, limit, sort, direction)).setParser((d) => Pessoa.fromData(d))
   }
 

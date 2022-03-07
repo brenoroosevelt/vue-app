@@ -48,6 +48,12 @@ class Paginator {
       params.sort[this._sort] = this._direction
     }
 
+    return http.get(this._endpoint, { params: params })
+      .then((response) => {
+        this._pagination = response.data[PAGINATION_KEY]
+        return response.data[ITEMS_KEY].map((item) => this._parser(item))
+      })
+
     // try {
     //   const { data } = await http.get(this._endpoint, { params: params })
     //   this._pagination = data[PAGINATION_KEY]
@@ -63,12 +69,6 @@ class Paginator {
     //     error: error
     //   }
     // }
-
-    return http.get(this._endpoint, { params: params })
-      .then((response) => {
-        this._pagination = response.data[PAGINATION_KEY]
-        return response.data[ITEMS_KEY].map((item) => this._parser(item))
-      })
   }
 
   setParser(callback) {
@@ -83,23 +83,25 @@ class Paginator {
     return this
   }
 
-  orderBy(field, firstPage = false) {
+  orderBy(field) {
     if (field === this._sort) {
       this._direction = this._direction === DIRECTION.ASC ? DIRECTION.DESC : DIRECTION.ASC
     } else {
       this._sort = field;
       this._direction = DEFAULT_DIRECTION
-      if (firstPage) {
-        this._page = FIRST_PAGE
-      }
     }
 
     return this
   }
 
-  setPage(page, limit) {
+  setPage(page) {
     this._page = page
-    this._limit = limit || this._limit
+
+    return this
+  }
+
+  setLimit(limit) {
+    this._limit = limit
 
     return this
   }
@@ -140,11 +142,11 @@ class Paginator {
     return this._limit
   }
 
-  currentSort() {
+  sortField() {
     return this._sort
   }
 
-  currentSortDirection() {
+  sortDirection() {
     return this._direction
   }
 

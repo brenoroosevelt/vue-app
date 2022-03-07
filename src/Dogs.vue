@@ -8,7 +8,7 @@
       <thead>
       <tr>
         <th @click="sort('nome')">Name</th>
-        <th @click="sort('age')">Age</th>
+        <th @click="sort('created_at')">Age</th>
         <th @click="sort('breed')">Breed</th>
         <th @click="sort('gender')">Gender</th>
       </tr>

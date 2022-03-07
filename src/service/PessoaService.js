@@ -3,7 +3,7 @@ import { FIRST_PAGE, DEFAULT_LIMIT, DEFAULT_DIRECTION, Paginator } from '../comm
 import Pessoa from '../model/Pessoa'
 
 const endpoint = '/pessoas'
-const ofId = (id) => `${endpoint}/${id}`
+const endpointOfId = (id) => `${endpoint}/${id}`
 
 export default class PessoaService {
   static newPaginator(page = FIRST_PAGE, limit = DEFAULT_LIMIT, sort = 'nome', direction = DEFAULT_DIRECTION) {
@@ -11,7 +11,7 @@ export default class PessoaService {
   }
 
   static async get(id) {
-    const { data } = await http.get(ofId(id))
+    const { data } = await http.get(endpointOfId(id))
 
     return Pessoa.fromData(data)
   }

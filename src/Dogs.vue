@@ -59,16 +59,17 @@ export default {
         return;
       }
 
-      try {
-        this.isLoading = true
-        this.items = await this.paginator.paginate()
-      } catch (error) {
-        console.log(error)
-      } finally {
-        this.isLoading = false
-      }
-
-      // return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
+      this.isLoading = true
+      return this.paginator.paginate().then(items => this.items = items).finally(() => this.isLoading = false)
+      
+      // try {
+      //   this.isLoading = true
+      //   this.items = await this.paginator.paginate()
+      // } catch (error) {
+      //   console.log(error)
+      // } finally {
+      //   this.isLoading = false
+      // }
     },
     filter: function () {
       this.paginator.setFilters(this.form).setPage(1)

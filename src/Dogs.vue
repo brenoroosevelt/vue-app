@@ -62,7 +62,7 @@ export default {
       this.isLoading = true
       this.items = await this.paginator.paginate()
       this.isLoading = false
-      
+
       // return this.paginator.paginate().then(res => this.items = res).finally(() => this.isLoading = false)
     },
     filter: function () {

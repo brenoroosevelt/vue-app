@@ -64,7 +64,7 @@ class Paginator {
     //   }
     // }
 
-    return await http.get(this._endpoint, { params: params })
+    return http.get(this._endpoint, { params: params })
       .then((response) => {
         this._pagination = response.data[PAGINATION_KEY]
         return response.data[ITEMS_KEY].map((item) => this._parser(item))

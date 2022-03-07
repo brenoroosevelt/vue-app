@@ -1,9 +1,11 @@
+import required from '../common/required';
+
 export default class Pessoa {
   constructor(id, nome, created_at, mais) {
     this.id = id
     this.nome = nome
     this.created_at = created_at
-    this._mais = mais || console.error('Pessoa::_mais is required')
+    this._mais = required(mais, 'required field `mais` is missing')
   }
 
   static fromData(data) {
